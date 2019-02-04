@@ -3,6 +3,7 @@ package com.pingpong.dynamicfragmentcalendar.CalendarView
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,20 +12,18 @@ import com.pingpong.dynamicfragmentcalendar.R
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import java.util.*
 
-class CalendarFragment : Fragment(){
-    companion object {
-        var Year : Int = 2019
-        var Month : Int = 0
-    }
+class CalendarFragment() : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_calendar,container,false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         val calendar = Calendar.getInstance()
-        Year = calendar.get(java.util.Calendar.YEAR)
-        Month = calendar.get(java.util.Calendar.MONTH)
-        Setting(Year,Month);
+        val YEAR = arguments!!.getInt("YEAR")
+        val MONTH = arguments!!.getInt("MONTH")
+        Log.d("test",YEAR.toString())
+
+        Setting(YEAR,MONTH);
         super.onActivityCreated(savedInstanceState)
     }
 
